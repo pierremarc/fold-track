@@ -1,13 +1,17 @@
-@water:#15A0E7;
-@forest:#0A7108;
+@water:#91C3CB;
+@forest:#C1E6BD;
 @swamp:#0CE84A;
 @agri:#4BE80C;
 @indus:#AFB9AB;
 @residential:#F6F40E;
 @building:#000000;
-@motorway:#FF5541;
-@road-in:#C2C2C2;
+@motorway:#C1C1C1;
+@road-in:#000000;
 @road-out:#464646;
+
+
+
+@font_reg:"Crimson Text Roman","Ubuntu Regular","Arial Regular","DejaVu Sans Book";
 
 Map {
   background-color:white;
@@ -50,10 +54,19 @@ Map {
 }
 
 #routesnormales{
-	::outline {
+/*	::outline {
 	line-color: @road-out;
 	line-width: 6;
-	}
+	}*/
 	line-color:@road-in;
-	line-width:3;
+	line-width:1.3;
+}
+
+
+#routesnormales{
+  text-placement:line;
+  text-face-name:@font_reg;
+    text-name:"[NAME]";
+    text-fill:#444;
+  }
 }

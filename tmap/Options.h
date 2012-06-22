@@ -40,6 +40,7 @@ namespace tmap {
 			static const std::string Projection;
 			static const std::string RefLayer;
 			static const std::string PartsCount;
+			static const std::string Fonts;
 
 		protected:
 			std::map<std::string, std::string> pData;

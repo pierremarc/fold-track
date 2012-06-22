@@ -41,6 +41,16 @@ int main(int ac, char ** av)
 	if(params.Has(tmap::Options::RefLayer))
 		rLayerStr = params.GetString(tmap::Options::RefLayer);
 
+	if(params.Has(tmap::Options::Fonts))
+	{
+		std::string pFontStr(params.GetString(tmap::Options::Fonts));
+		std::vector<std::string> fontVect;
+		boost::algorithm::split(fontVect, pFontStr, boost::algorithm::is_any_of(","), boost::algorithm::token_compress_on );
+		BOOST_FOREACH(std::string font, fontVect)
+		{
+			mapnik::freetype_engine::register_font(font);
+		}
+	}
 
 
 	/// prepare the map

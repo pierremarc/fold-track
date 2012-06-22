@@ -36,6 +36,7 @@ namespace tmap {
 	const std::string Options::Projection = std::string("proj"); // ???
 	const std::string Options::RefLayer = std::string("layer");
 	const std::string Options::PartsCount = std::string("parts");
+	const std::string Options::Fonts = std::string("font");
 	
 	Options::Options()
 	{
