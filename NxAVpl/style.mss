@@ -9,7 +9,7 @@
 @road-in:#000000;
 @road-out:#464646;
 
-
+@rot:270;
 
 @font_reg:"Crimson Text Roman","Ubuntu Regular","Arial Regular","DejaVu Sans Book";
 
@@ -63,10 +63,19 @@ Map {
 }
 
 
-#routesnormales{
-  text-placement:line;
-  text-face-name:@font_reg;
-    text-name:"[NAME]";
-    text-fill:#444;
-  }
+#municipality{
+	text-placement:interior;
+	text-face-name:@font_reg;
+	text-size:11;
+	text-name:"[name]";
+	text-fill:#000;
+	text-orientation:@rot;
+}
+#province{
+	text-placement:interior;
+	text-face-name:@font_reg;
+	text-size:16;
+	text-name:"[name]";
+	text-fill:#000;
+	text-orientation:@rot;
 }

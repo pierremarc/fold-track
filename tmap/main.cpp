@@ -89,6 +89,14 @@ int main(int ac, char ** av)
 		}
 	}
 
+	std::cerr<<"Layers ======================="<<std::endl;
+	for(int i(0); i < lc; ++i)
+	{
+		mapnik::layer& l(m.layers().at(i));
+		std::cerr<<" "<<l.name()<<std::endl;
+	}
+	std::cerr<<"=============================="<<std::endl;
+
 	/// get the extent
 	mapnik::box2d<double> bb;
 	bool firstLayer(true);

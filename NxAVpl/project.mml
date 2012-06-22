@@ -20,6 +20,50 @@
   ],
   "Layer": [
     {
+      "name": "province",
+      "id": "province",
+      "Datasource": {
+        "table": "(SELECT * FROM planet_osm_polygon WHERE admin_level = '4' ) as province",
+        "type": "postgis",
+        "extent": "",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "host": "localhost",
+        "password": "plokplok",
+        "user": "pierre",
+        "dbname": "geo1",
+        "id": "border",
+        "project": "nadine_a_velo",
+        "srs": null
+      },
+      "geometry": "linestring",
+      "class": "line",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+    },
+    {
+      "name": "municipality",
+      "id": "municipality",
+      "Datasource": {
+        "table": "(SELECT * FROM planet_osm_polygon WHERE admin_level = '8' ) as municipality",
+        "type": "postgis",
+        "extent": "",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "host": "localhost",
+        "password": "plokplok",
+        "user": "pierre",
+        "dbname": "geo1",
+        "id": "border",
+        "project": "nadine_a_velo",
+        "srs": null
+      },
+      "geometry": "linestring",
+      "class": "line",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+    },
+    {
       "name": "residentielles",
       "id": "residentielles",
       "Datasource": {
