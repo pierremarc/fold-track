@@ -1,0 +1,400 @@
+{
+  "bounds": [
+    16.1884,
+    53.0974,
+    19.2206,
+    54.8988
+  ],
+  "center": [
+    17.4847,
+    53.9787,
+    7
+  ],
+  "format": "png",
+  "interactivity": false,
+  "minzoom": 0,
+  "maxzoom": 22,
+  "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+  "Stylesheet": [
+    "style.mss"
+  ],
+  "Layer": [
+    {
+      "name": "residentielles",
+      "id": "residentielles",
+      "Datasource": {
+        "table": "(SELECT * FROM planet_osm_polygon WHERE landuse = 'residential' OR landuse = 'commercial' OR landuse = 'construction' OR landuse = 'college' OR landuse = 'hospital' ) as residentielles",
+        "type": "postgis",
+        "extent": "",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "host": "localhost",
+        "password": "plokplok",
+        "user": "pierre",
+        "dbname": "geo1",
+        "id": "border",
+        "project": "nadine_a_velo",
+        "srs": null
+      },
+      "geometry": "linestring",
+      "class": "line",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+    },
+    {
+      "name": "agricoles",
+      "id": "agricoles",
+      "Datasource": {
+        "table": "(SELECT * FROM planet_osm_polygon WHERE landuse = 'allotments' OR landuse = 'farm' OR landuse = 'farmland' OR landuse = 'farmyard' OR landuse = 'grass' OR landuse = 'meadow' OR landuse = 'orchard' OR landuse = 'vineyard' OR surface='grass' ) as agricoles",
+        "type": "postgis",
+        "extent": "",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "host": "localhost",
+        "password": "plokplok",
+        "user": "pierre",
+        "dbname": "geo1",
+        "id": "border",
+        "project": "nadine_a_velo",
+        "srs": null
+      },
+      "geometry": "linestring",
+      "class": "line",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+    },
+    {
+      "name": "indus",
+      "id": "indus",
+      "Datasource": {
+        "table": "(SELECT * FROM planet_osm_polygon WHERE landuse='industrial' ) as indus",
+        "type": "postgis",
+        "extent": "",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "host": "localhost",
+        "password": "plokplok",
+        "user": "pierre",
+        "dbname": "geo1",
+        "id": "border",
+        "project": "nadine_a_velo",
+        "srs": null
+      },
+      "geometry": "linestring",
+      "class": "line",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+    },
+    {
+      "name": "eau",
+      "id": "eau",
+      "Datasource": {
+        "table": "(SELECT * FROM planet_osm_polygon WHERE \"natural\" = 'water' OR waterway != '' ) as eau",
+        "type": "postgis",
+        "extent": "",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "host": "localhost",
+        "password": "plokplok",
+        "user": "pierre",
+        "dbname": "geo1",
+        "id": "border",
+        "project": "nadine_a_velo",
+        "srs": null
+      },
+      "geometry": "linestring",
+      "class": "line",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+    },
+    {
+      "name": "foret",
+      "id": "foret",
+      "Datasource": {
+        "table": "(SELECT * FROM planet_osm_polygon WHERE landuse='forest' ) as foret",
+        "type": "postgis",
+        "extent": "",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "host": "localhost",
+        "password": "plokplok",
+        "user": "pierre",
+        "dbname": "geo1",
+        "id": "border",
+        "project": "nadine_a_velo",
+        "srs": null
+      },
+      "geometry": "linestring",
+      "class": "line",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+    },
+    {
+      "name": "marecages",
+      "id": "marecages",
+      "Datasource": {
+        "table": "(SELECT * FROM planet_osm_polygon WHERE \"natural\" = 'wetland' ) as marecages",
+        "type": "postgis",
+        "extent": "",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "host": "localhost",
+        "password": "plokplok",
+        "user": "pierre",
+        "dbname": "geo1",
+        "id": "border",
+        "project": "nadine_a_velo",
+        "srs": null
+      },
+      "geometry": "linestring",
+      "class": "line",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+    },
+    {
+      "name": "montagnes",
+      "id": "montagnes",
+      "Datasource": {
+        "table": "(SELECT * FROM planet_osm_point WHERE \"natural\" = 'peak' ) as montagnes",
+        "type": "postgis",
+        "extent": "",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "host": "localhost",
+        "password": "plokplok",
+        "user": "pierre",
+        "dbname": "geo1",
+        "id": "border",
+        "project": "nadine_a_velo",
+        "srs": null
+      },
+      "geometry": "linestring",
+      "class": "line",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+    },
+    {
+      "name": "buildings",
+      "id": "buildings",
+      "Datasource": {
+        "table": "(SELECT * FROM planet_osm_polygon WHERE building !='' ) as buildings",
+        "type": "postgis",
+        "extent": "",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "host": "localhost",
+        "password": "plokplok",
+        "user": "pierre",
+        "dbname": "geo1",
+        "id": "border",
+        "project": "nadine_a_velo",
+        "srs": null
+      },
+      "geometry": "linestring",
+      "class": "line",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+    },
+    {
+      "name": "aeroports",
+      "id": "aeroports",
+      "Datasource": {
+        "table": "(SELECT * FROM planet_osm_polygon WHERE aeroway != '' ) as aeroports",
+        "type": "postgis",
+        "extent": "",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "host": "localhost",
+        "password": "plokplok",
+        "user": "pierre",
+        "dbname": "geo1",
+        "id": "border",
+        "project": "nadine_a_velo",
+        "srs": null
+      },
+      "geometry": "linestring",
+      "class": "line",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+    },
+    {
+      "name": "cimetieres",
+      "id": "cimetieres",
+      "Datasource": {
+        "table": "(SELECT * FROM planet_osm_polygon WHERE landuse='cemetery' OR amenity='grave_yard') as cimetieres",
+        "type": "postgis",
+        "extent": "",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "host": "localhost",
+        "password": "plokplok",
+        "user": "pierre",
+        "dbname": "geo1",
+        "id": "border",
+        "project": "nadine_a_velo",
+        "srs": null
+      },
+      "geometry": "linestring",
+      "class": "line",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+    },
+    {
+      "name": "eglises",
+      "id": "eglises",
+      "Datasource": {
+        "table": "(SELECT * FROM planet_osm_polygon WHERE religion != '' AND building!='' ) as eglises",
+        "type": "postgis",
+        "extent": "",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "host": "localhost",
+        "password": "plokplok",
+        "user": "pierre",
+        "dbname": "geo1",
+        "id": "border",
+        "project": "nadine_a_velo",
+        "srs": null
+      },
+      "geometry": "linestring",
+      "class": "line",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+    },
+    {
+      "name": "ancienbatiments",
+      "id": "ancienbatiments",
+      "Datasource": {
+        "table": "(SELECT * FROM planet_osm_polygon WHERE historic != '' ) as ancienbatiments",
+        "type": "postgis",
+        "extent": "",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "host": "localhost",
+        "password": "plokplok",
+        "user": "pierre",
+        "dbname": "geo1",
+        "id": "border",
+        "project": "nadine_a_velo",
+        "srs": null
+      },
+      "geometry": "linestring",
+      "class": "line",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+    },
+    {
+      "name": "voiesrapides",
+      "id": "voiesrapides",
+      "Datasource": {
+        "table": "(SELECT * FROM planet_osm_line WHERE highway = 'motorway' OR highway = 'motorway_link' OR highway = 'trunk_link' OR highway = 'trunk' ) as voiesrapides",
+        "type": "postgis",
+        "extent": "",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "host": "localhost",
+        "password": "plokplok",
+        "user": "pierre",
+        "dbname": "geo1",
+        "id": "border",
+        "project": "nadine_a_velo",
+        "srs": null
+      },
+      "geometry": "linestring",
+      "class": "line",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+    },
+    {
+      "name": "routesnormales",
+      "id": "routesnormales",
+      "Datasource": {
+        "table": "(SELECT * FROM planet_osm_line WHERE highway = 'unclassified' OR highway = 'abandoned' OR highway = 'bridleway' OR highway = 'cycleway' OR highway = 'living_street' OR highway = 'path' OR highway = 'residential' OR highway = 'turning_circle' OR highway = 'road' OR highway = 'disused' OR highway = 'primary' OR highway = 'secondary' OR highway = 'track' OR highway = 'tertiary' OR highway = 'tertiary_link' OR highway = 'secondary_link' OR highway = 'primary_link' OR highway = 'crossing' OR highway = 'service' ) as routesnormales",
+        "type": "postgis",
+        "extent": "",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "host": "localhost",
+        "password": "plokplok",
+        "user": "pierre",
+        "dbname": "geo1",
+        "id": "border",
+        "project": "nadine_a_velo",
+        "srs": null
+      },
+      "geometry": "linestring",
+      "class": "line",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+    },
+    {
+      "name": "pieton",
+      "id": "pieton",
+      "Datasource": {
+        "table": "(SELECT * FROM planet_osm_line WHERE highway = 'footway' OR highway = 'pedestrian' ) as pieton",
+        "type": "postgis",
+        "extent": "",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "host": "localhost",
+        "password": "plokplok",
+        "user": "pierre",
+        "dbname": "geo1",
+        "id": "border",
+        "project": "nadine_a_velo",
+        "srs": null
+      },
+      "geometry": "linestring",
+      "class": "line",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+    },
+    {
+      "name": "normal",
+      "id": "normal",
+      "Datasource": {
+        "table": "(SELECT * FROM planet_osm_line WHERE railway!='disused' AND railway!='abandoned' AND railway!='' ) as normal",
+        "type": "postgis",
+        "extent": "",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "host": "localhost",
+        "password": "plokplok",
+        "user": "pierre",
+        "dbname": "geo1",
+        "id": "border",
+        "project": "nadine_a_velo",
+        "srs": null
+      },
+      "geometry": "linestring",
+      "class": "line",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+    },
+    {
+      "name": "aband",
+      "id": "aband",
+      "Datasource": {
+        "table": "(SELECT * FROM planet_osm_line WHERE railway='disused' OR railway='abandoned' ) as aband",
+        "type": "postgis",
+        "extent": "",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "host": "localhost",
+        "password": "plokplok",
+        "user": "pierre",
+        "dbname": "geo1",
+        "id": "border",
+        "project": "nadine_a_velo",
+        "srs": null
+      },
+      "geometry": "linestring",
+      "class": "line",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+    }
+  ],
+  "name": "Nadine dans le pli",
+  "description": "",
+  "attribution": ""
+}
