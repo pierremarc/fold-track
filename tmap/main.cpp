@@ -8,12 +8,22 @@
 #include <map>
 #include <exception>
 #include <iomanip>
+#include <vector>
+
+#include <boost/algorithm/string.hpp>
+#include <boost/foreach.hpp>
 
 #include "Utils.h"
 #include "Options.h"
 
 #include <mapnik/cairo_renderer.hpp>
 #include <cairo-features.h>
+
+
+namespace tmap{
+	const std::string AllLayers = std::string("all");
+	typedef std::pair<std::string, int> LayerRef_t;
+}
 
 
 int main(int ac, char ** av)
@@ -27,29 +37,67 @@ int main(int ac, char ** av)
 	double denom(params.Get(tmap::Options::ScaleDenominator, 100000.0));
 	double parts(params.Get(tmap::Options::PartsCount, 1));
 
+	std::string rLayerStr(tmap::AllLayers);
+	if(params.Has(tmap::Options::RefLayer))
+		rLayerStr = params.GetString(tmap::Options::RefLayer);
+
+
+
 	/// prepare the map
 	mapnik::datasource_cache::instance()->register_datasources(tmap::mapnik_input_dir());
 	mapnik::Map m;
 	mapnik::load_map(m, params.GetString(tmap::Options::MapnikStyle));
 
-	/// get the extent
-	mapnik::box2d<double> bb;
-	int lc(m.layer_count());
+	/// prep layers
+	const int lc(m.layer_count());
 	std::map<std::string, unsigned int> lnames;
-	for(int i(0); i < lc; ++i)
+	std::vector<std::string> pLayers;
+	boost::algorithm::split(pLayers, rLayerStr, boost::algorithm::is_any_of(","), boost::algorithm::token_compress_on );
+	if(pLayers.size() == 1 && pLayers.at(0) == tmap::AllLayers)
 	{
-		mapnik::layer& l(m.layers().at(i));
-//		l.set_active(true);
-//		bb.expand_to_include(l.envelope());
-		lnames[l.name()]=i;
-		std::cerr<<l.name()<< ": " <<l.envelope()<<std::endl;
+		for(int i(0); i < lc; ++i)
+		{
+			mapnik::layer& l(m.layers().at(i));
+			lnames[l.name()]=i;
+		}
+	}
+	else
+	{
+		for(std::vector<std::string>::iterator plit(pLayers.begin()); plit != pLayers.end(); plit++)
+		{
+			std::string tl(*plit);
+			if(tl[0] != '-')
+			{
+				for(int i(0); i < lc; ++i)
+				{
+					mapnik::layer& l(m.layers().at(i));
+					if(tl == l.name())
+						lnames[l.name()]=i;
+				}
+			}
+
+		}
 	}
 
-	if(params.Has(tmap::Options::RefLayer))
+	/// get the extent
+	mapnik::box2d<double> bb;
+	bool firstLayer(true);
+//	for(int i(0); i < lnames.size(); ++i)
+	BOOST_FOREACH(const tmap::LayerRef_t& kl, lnames)
 	{
-		bb = m.layers().at(lnames[params.GetString(tmap::Options::RefLayer)]).envelope();
-		std::cerr<< params.GetString(tmap::Options::RefLayer)<< " envelope => "<<bb<<std::endl;
+
+		mapnik::layer& l(m.layers().at(kl.second));
+		if(firstLayer)
+		{
+			firstLayer = false;
+			bb = l.envelope();
+		}
+		else
+		{
+			bb.expand_to_include(l.envelope());
+		}
 	}
+
 
 	double trans = params.Get(tmap::Options::Transverse, 1000.0);
 	if(params.Has(tmap::Options::Latitude)) // trans is height
@@ -92,9 +140,16 @@ int main(int ac, char ** av)
 
 	mapnik::Map targetMap(tmap::m2pt(mapW), tmap::m2pt(mapH));
 	mapnik::load_map(targetMap, params.GetString(tmap::Options::MapnikStyle));
-	for(int i(0); i < targetMap.layer_count(); ++i)
+
+	for(int i(0); i < targetMap.layer_count(); i++)
 	{
-		targetMap.layers().at(i).set_active(true);
+		targetMap.layers().at(i).set_active(false);
+	}
+	BOOST_FOREACH(const tmap::LayerRef_t& kl, lnames)
+	{
+		std::cerr<<"Activate layer for rendering: "<<kl.first<<std::endl;
+		mapnik::layer& l(targetMap.layers().at(kl.second));
+		l.set_active(true);
 	}
 	targetMap.zoom_to_box(bb);
 	std::cerr<<"Map Width: "<< targetMap.width() <<std::endl;
@@ -107,6 +162,7 @@ int main(int ac, char ** av)
 		mapnik::save_to_cairo_file(targetMap, out, type);
 	else
 	{
+		/// ### FIXME it just doesnt work
 		std::ofstream file(out.c_str(), std::ios::out|std::ios::trunc|std::ios::binary);
 
 		Cairo::RefPtr<Cairo::Surface> surface;
@@ -126,15 +182,17 @@ int main(int ac, char ** av)
 		Cairo::RefPtr<Cairo::Context> context = Cairo::Context::create(surface);
 		for(int i(0); i<parts; i++)
 		{
-			std::cerr<<"Page "<<(i+1)<<std::endl;
+			std::cerr<<"Page "<<(i+1)<<" @ "<<(i *pageheight)<<std::endl;
 			context->set_source(rendersurface, 0, i * pageheight);
 			context->paint();
-			context->show_page();
+			context->copy_page();
 		}
 
 
 		rendersurface->finish();
 		surface->finish();
+
+		file.close();
 	}
 
 	return 0;
