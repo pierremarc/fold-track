@@ -68,13 +68,13 @@ Map {
 
 
 #badways{
-	line-dasharray: 0.3 0.6;
+	line-dasharray: 0.3, 0.6;
 	line-width:0.3;
 	line-color:@road-in;
 }
 
 #smallways{
-	line-dasharray: 2 1;
+	line-dasharray: 2, 1;
 	line-width:0.3;
 	line-color:@road-in;
 }
