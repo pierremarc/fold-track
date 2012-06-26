@@ -284,11 +284,33 @@
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
     },
-    {
-      "name": "voiesrapides",
-      "id": "voiesrapides",
+     {
+      "name": "badways",
+      "id": "badways",
       "Datasource": {
-        "table": "(SELECT osm_id,way,name FROM planet_osm_line WHERE highway = 'motorway' OR highway = 'motorway_link' OR highway = 'trunk_link' OR highway = 'trunk' ) as voiesrapides",
+        "table": "(SELECT * FROM planet_osm_line WHERE highway = 'footway' OR highway = 'pedestrian' OR highway = 'bridleway' OR highway = 'abandoned' OR highway = 'disused' ) as badways",
+        "type": "postgis",
+        "extent": "",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "host": "localhost",
+        "password": "plokplok",
+        "user": "pierre",
+        "dbname": "geo1",
+        "id": "border",
+        "project": "nadine_a_velo",
+        "srs": null
+      },
+      "geometry": "linestring",
+      "class": "line",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+    },
+    {
+      "name": "smallways",
+      "id": "smallways",
+      "Datasource": {
+        "table": "(SELECT * FROM planet_osm_line WHERE highway = 'cycleway' OR highway = 'living_street' OR highway = 'path' OR highway = 'track' ) as smallways",
         "type": "postgis",
         "extent": "",
         "key_field": "osm_id",
@@ -310,7 +332,7 @@
       "name": "routesnormales",
       "id": "routesnormales",
       "Datasource": {
-        "table": "(SELECT osm_id,way,name FROM planet_osm_line WHERE highway = 'unclassified' OR highway = 'abandoned' OR highway = 'bridleway' OR highway = 'cycleway' OR highway = 'living_street' OR highway = 'path' OR highway = 'residential' OR highway = 'turning_circle' OR highway = 'road' OR highway = 'disused' OR highway = 'primary' OR highway = 'secondary' OR highway = 'track' OR highway = 'tertiary' OR highway = 'tertiary_link' OR highway = 'secondary_link' OR highway = 'primary_link' OR highway = 'crossing' OR highway = 'service' ) as routesnormales",
+        "table": "(SELECT * FROM planet_osm_line WHERE highway = 'unclassified' OR highway = 'living_street' OR highway = 'residential' OR highway = 'turning_circle' OR highway = 'road' OR highway = 'secondary' OR highway = 'tertiary' OR highway = 'tertiary_link' OR highway = 'secondary_link' OR highway = 'crossing' OR highway = 'service' ) as routesnormales",
         "type": "postgis",
         "extent": "",
         "key_field": "osm_id",
@@ -329,10 +351,10 @@
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
     },
     {
-      "name": "pieton",
-      "id": "pieton",
+      "name": "voiesrapides",
+      "id": "voiesrapides",
       "Datasource": {
-        "table": "(SELECT osm_id,way,name FROM planet_osm_line WHERE highway = 'footway' OR highway = 'pedestrian' ) as pieton",
+        "table": "(SELECT * FROM planet_osm_line WHERE highway = 'motorway' OR highway = 'motorway_link' OR highway = 'trunk_link' OR highway = 'trunk' OR highway = 'primary_link' OR highway = 'primary' ) as voiesrapides",
         "type": "postgis",
         "extent": "",
         "key_field": "osm_id",
