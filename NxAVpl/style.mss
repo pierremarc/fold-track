@@ -48,9 +48,17 @@ Map {
 }
 
 
-#voiesrapides{
-	line-color:@motorway;
-	line-width:2;
+
+#badways{
+	line-dasharray: 0.3 0.6;
+	line-width:0.3;
+	line-color:@road-in;
+}
+
+#smallways{
+	line-dasharray: 2 1;
+	line-width:0.3;
+	line-color:@road-in;
 }
 
 #routesnormales{
@@ -62,6 +70,11 @@ Map {
 	line-width:1.3;
 }
 
+
+#voiesrapides{
+	line-color:@motorway;
+	line-width:2;
+}
 
 #municipality{
 	text-placement:interior;
