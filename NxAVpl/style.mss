@@ -20,10 +20,7 @@ Map {
 
 
 #agricoles{
-/* 	polygon-fill:@agri; */
-	/*line-color:@motorway;
-	line-width:1;*/
-	polygon-pattern-file:url('/home/pierre/System/src/fold-track/NxAVpl/hatch_00.svg');
+ 	polygon-fill:@agri;
 }
 
 #foret{
