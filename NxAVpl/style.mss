@@ -11,7 +11,8 @@
 
 @rot:270;
 
-@font_reg:"Crimson Text Roman","Ubuntu Regular","Arial Regular","DejaVu Sans Book";
+@font_crimson:"Crimson Text Roman","Serif";
+@font_limousine:"Limousine Medium","Sans";
 
 Map {
   background-color:white;
@@ -19,12 +20,16 @@ Map {
 
 
 #agricoles{
-	polygon-fill:@agri;
+/* 	polygon-fill:@agri; */
+	/*line-color:@motorway;
+	line-width:1;*/
+	polygon-pattern-file:url('/home/pierre/System/src/fold-track/NxAVpl/hatch_00.svg');
 }
 
 #foret{
-	polygon-fill:@forest;
+/* 	polygon-fill:@forest; */
 /* 	polygon-pattern-file:url('hatch00.png'); */
+	polygon-pattern-file:url('/home/pierre/System/src/fold-track/NxAVpl/hatch_00.svg');
 }
 
 #marecages{
@@ -47,6 +52,22 @@ Map {
 	polygon-fill:@building;
 }
 
+#cimetieres{
+	
+/* 	polygon-fill:@building; */
+	text-face-name:@font_limousine;
+	text-size:13;
+	text-name:"'Cim.'";
+	text-fill:#000;
+	text-orientation:@rot;
+}
+
+#eglises{
+	polygon-fill:red;
+}
+#ancienbatiments{
+	polygon-fill:#ff00aa;
+}
 
 #voiesrapides{
 	line-color:@motorway;
@@ -62,19 +83,27 @@ Map {
 	line-width:1.3;
 }
 
-
+#roadname{
+	text-placement:line;
+	text-face-name:@font_crimson;
+	text-size:9;
+	text-name:"[name]";
+	text-fill:#444;
+	text-dy:4;
+/* 	text-orientation:@rot; */
+}
 #municipality{
 	text-placement:interior;
-	text-face-name:@font_reg;
-	text-size:11;
+	text-face-name:@font_limousine;
+	text-size:18;
 	text-name:"[name]";
 	text-fill:#000;
 	text-orientation:@rot;
 }
 #province{
 	text-placement:interior;
-	text-face-name:@font_reg;
-	text-size:16;
+	text-face-name:@font_limousine;
+	text-size:26;
 	text-name:"[name]";
 	text-fill:#000;
 	text-orientation:@rot;

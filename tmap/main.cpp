@@ -52,6 +52,14 @@ int main(int ac, char ** av)
 		}
 	}
 
+	const std::map<std::string,std::pair<int,std::string> >& font_map(mapnik::freetype_engine::get_mapping());
+	for(std::map<std::string,std::pair<int,std::string> >::const_iterator fit(font_map.begin());
+	    fit != font_map.end();
+	    fit++)
+	{
+		std::cerr<<"Registered Font: "<<fit->first<< " "<< fit->second.first <<" "<< fit->second.second <<std::endl;
+	}
+
 
 	/// prepare the map
 	mapnik::datasource_cache::instance()->register_datasources(tmap::mapnik_input_dir());
