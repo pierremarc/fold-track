@@ -69,9 +69,17 @@ Map {
 	polygon-fill:#ff00aa;
 }
 
-#voiesrapides{
-	line-color:@motorway;
-	line-width:2;
+
+#badways{
+	line-dasharray: 0.3 0.6;
+	line-width:0.3;
+	line-color:@road-in;
+}
+
+#smallways{
+	line-dasharray: 2 1;
+	line-width:0.3;
+	line-color:@road-in;
 }
 
 #routesnormales{
@@ -92,6 +100,12 @@ Map {
 	text-dy:4;
 /* 	text-orientation:@rot; */
 }
+
+#voiesrapides{
+	line-color:@motorway;
+	line-width:2;
+}
+
 #municipality{
 	text-placement:interior;
 	text-face-name:@font_limousine;
