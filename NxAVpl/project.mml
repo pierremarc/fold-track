@@ -332,7 +332,7 @@
       "name": "routesnormales",
       "id": "routesnormales",
       "Datasource": {
-        "table": "(SELECT * FROM planet_osm_line WHERE highway = 'unclassified' OR highway = 'living_street' OR highway = 'residential' OR highway = 'turning_circle' OR highway = 'road' OR highway = 'secondary' OR highway = 'tertiary' OR highway = 'tertiary_link' OR highway = 'secondary_link' OR highway = 'crossing' OR highway = 'service' ) as routesnormales",
+        "table": "(SELECT * FROM planet_osm_line WHERE highway IN ( 'unclassified', 'living_street', 'residential', 'turning_circle', 'road', 'secondary', 'tertiary', 'tertiary_link', 'secondary_link', 'crossing', 'service') ) as routesnormales",
         "type": "postgis",
         "extent": "",
         "key_field": "osm_id",
@@ -354,7 +354,7 @@
       "name": "voiesrapides",
       "id": "voiesrapides",
       "Datasource": {
-        "table": "(SELECT * FROM planet_osm_line WHERE highway = 'motorway' OR highway = 'motorway_link' OR highway = 'trunk_link' OR highway = 'trunk' OR highway = 'primary_link' OR highway = 'primary' ) as voiesrapides",
+        "table": "(SELECT * FROM planet_osm_line WHERE highway IN ( 'motorway' , 'motorway_link', 'trunk_link', 'trunk', 'primary_link', 'primary') ) as voiesrapides",
         "type": "postgis",
         "extent": "",
         "key_field": "osm_id",
@@ -398,7 +398,7 @@
       "name": "aband",
       "id": "aband",
       "Datasource": {
-        "table": "(SELECT osm_id,way,name FROM planet_osm_line WHERE railway='disused' OR railway='abandoned' ) as aband",
+        "table": "(SELECT osm_id,way,name FROM planet_osm_line WHERE railway IN ('disused','abandoned') ) as aband",
         "type": "postgis",
         "extent": "",
         "key_field": "osm_id",
@@ -439,28 +439,6 @@
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
     },
     {
-      "name": "municipality",
-      "id": "municipality",
-      "Datasource": {
-        "table": "(SELECT osm_id,way,name FROM planet_osm_polygon WHERE admin_level = '8' ) as municipality",
-        "type": "postgis",
-        "extent": "",
-        "key_field": "osm_id",
-        "geometry_field": "way",
-        "host": "localhost",
-        "password": "plokplok",
-        "user": "pierre",
-        "dbname": "geo1",
-        "id": "border",
-        "project": "nadine_a_velo",
-        "srs": null
-      },
-      "geometry": "linestring",
-      "class": "line",
-      "srs-name": "900913",
-      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
-    },
-    {
       "name": "roadname",
       "id": "roadname",
       "Datasource": {
@@ -479,6 +457,50 @@
       },
       "geometry": "linestring",
       "class": "line",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+    },
+    {
+      "name": "cities_big",
+      "id": "cities_big",
+      "Datasource": {
+        "table": "(SELECT * FROM (SELECT osm_id,way,name,population::integer FROM planet_osm_point WHERE population ~ E'^\\d+$') as pop WHERE pop.population > 10000) as cities_big",
+        "type": "postgis",
+        "extent": "",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "host": "localhost",
+        "password": "plokplok",
+        "user": "pierre",
+        "dbname": "geo1",
+        "id": "border",
+        "project": "nadine_a_velo",
+        "srs": null
+      },
+      "geometry": "point",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+    },
+    {
+      "name": "cities_small",
+      "id": "cities_small",
+      "Datasource": {
+        "table": "(SELECT * FROM (SELECT osm_id,way,name,population::integer FROM planet_osm_point WHERE population ~ E'^\\d+$') as pop WHERE pop.population <= 10000) as cities_small",
+        "type": "postgis",
+        "extent": "",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "host": "localhost",
+        "password": "plokplok",
+        "user": "pierre",
+        "dbname": "geo1",
+        "id": "border",
+        "project": "nadine_a_velo",
+        "srs": null
+      },
+      "geometry": "point",
+      "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
     }

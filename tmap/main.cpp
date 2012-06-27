@@ -128,7 +128,7 @@ int main(int ac, char ** av)
 	double trans = params.Get(tmap::Options::Transverse, 1000.0);
 	if(params.Has(tmap::Options::Latitude)) // trans is height
 	{
-		// FIXME
+		// FIXME or FORGET IT
 
 		double lat(params.Get(tmap::Options::Latitude, bb.miny() + (bb.height() / 2.0)));
 		// we are looking for max and min y
@@ -143,12 +143,16 @@ int main(int ac, char ** av)
 	{
 		double lon(params.Get(tmap::Options::Longitude, bb.minx() + (bb.width() / 2.0)));
 
+		double miny(params.Get(tmap::Options::MinLat, bb.miny()));
+		double maxy(params.Get(tmap::Options::MaxLat, bb.maxy()));
+
 		double maxx(std::max(tmap::follow(mapnik::coord2d(lon, bb.miny()), trans / 2.0, AZI_WEST, m.srs()).x,
 				     tmap::follow(mapnik::coord2d(lon, bb.maxy()), trans / 2.0, AZI_WEST, m.srs()).x));
 
 		double minx(std::min(tmap::follow(mapnik::coord2d(lon, bb.miny()), trans / 2.0, AZI_EAST, m.srs()).x,
 				     tmap::follow(mapnik::coord2d(lon, bb.maxy()), trans / 2.0, AZI_EAST, m.srs()).x));
-		bb = mapnik::box2d<double>(minx,bb.miny(),maxx,bb.maxy());
+		bb = mapnik::box2d<double>(minx, miny,
+					   maxx, maxy);
 	}
 	else
 	{
@@ -164,61 +168,35 @@ int main(int ac, char ** av)
 
 	double mapH(tmap::distance(mapnik::coord2d(bb.minx(), bb.miny()), mapnik::coord2d(bb.minx(), bb.maxy()), m.srs()) / denom);
 
-	mapnik::Map targetMap(tmap::m2pt(mapW), tmap::m2pt(mapH));
-	mapnik::load_map(targetMap, params.GetString(tmap::Options::MapnikStyle));
-
-	for(int i(0); i < targetMap.layer_count(); i++)
-	{
-		targetMap.layers().at(i).set_active(false);
-	}
-	BOOST_FOREACH(const tmap::LayerRef_t& kl, lnames)
-	{
-		std::cerr<<"Activate layer for rendering: "<<kl.first<<std::endl;
-		mapnik::layer& l(targetMap.layers().at(kl.second));
-		l.set_active(true);
-	}
-	targetMap.zoom_to_box(bb);
-	std::cerr<<"Map Width: "<< targetMap.width() <<std::endl;
-
 	std::string out(params.GetString(tmap::Options::OutputFile));
 	std::string type(*(mapnik::type_from_filename(out)));
-	if(type == std::string("png"))
-		type = std::string("ARGB32");
 	if(type != std::string("pdf") || parts == 1.0)
+	{
+		mapnik::Map targetMap(tmap::m2pt(mapW), tmap::m2pt(mapH));
+		mapnik::load_map(targetMap, params.GetString(tmap::Options::MapnikStyle));
+
+		for(int i(0); i < targetMap.layer_count(); i++)
+		{
+			targetMap.layers().at(i).set_active(false);
+		}
+		BOOST_FOREACH(const tmap::LayerRef_t& kl, lnames)
+		{
+			std::cerr<<"Activate layer for rendering: "<<kl.first<<std::endl;
+			mapnik::layer& l(targetMap.layers().at(kl.second));
+			l.set_active(true);
+		}
+		targetMap.zoom_to_box(bb);
+		std::cerr<<"Map Width: "<< targetMap.width() <<std::endl;
+
+
+		if(type == std::string("png"))
+			type = std::string("ARGB32");
+
 		mapnik::save_to_cairo_file(targetMap, out, type);
+	}
 	else
 	{
-		/// ### FIXME it just doesnt work
-		std::ofstream file(out.c_str(), std::ios::out|std::ios::trunc|std::ios::binary);
-
-		Cairo::RefPtr<Cairo::Surface> surface;
-		Cairo::RefPtr<Cairo::Surface> rendersurface;
-		unsigned width = targetMap.width();
-		unsigned height = targetMap.height();
-		unsigned pageheight = height / parts;
-		surface = Cairo::PdfSurface::create(out,width,pageheight);
-		rendersurface = Cairo::PdfSurface::create("/tmp/tmap_xxxx.pdf",width,height);
-
-		Cairo::RefPtr<Cairo::Context> rendercontext = Cairo::Context::create(rendersurface);
-		mapnik::cairo_renderer<Cairo::Context> ren(targetMap, rendercontext);
-		std::cerr<<"Rendering "<<std::endl;
-		ren.apply();
-
-		std::cerr<<"Splitting "<<std::endl;
-		Cairo::RefPtr<Cairo::Context> context = Cairo::Context::create(surface);
-		for(int i(0); i<parts; i++)
-		{
-			std::cerr<<"Page "<<(i+1)<<" @ "<<(i *pageheight)<<std::endl;
-			context->set_source(rendersurface, 0, i * pageheight);
-			context->paint();
-			context->copy_page();
-		}
-
-
-		rendersurface->finish();
-		surface->finish();
-
-		file.close();
+		// TODO
 	}
 
 	return 0;

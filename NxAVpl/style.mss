@@ -54,7 +54,7 @@ Map {
 /* 	polygon-fill:@building; */
 	text-face-name:@font_limousine;
 	text-size:13;
-	text-name:"'Cim.'";
+	text-name:"'+'";
 	text-fill:#000;
 	text-orientation:@rot;
 }
@@ -85,31 +85,28 @@ Map {
 	line-width: 6;
 	}*/
 	line-color:@road-in;
-	line-width:1.3;
+	line-width:0.5;
 }
 
-#roadname{
-	text-placement:line;
-	text-face-name:@font_crimson;
-	text-size:9;
-	text-name:"[name]";
-	text-fill:#444;
-	text-dy:4;
-/* 	text-orientation:@rot; */
-}
 
 #voiesrapides{
 	line-color:@motorway;
 	line-width:2;
 }
 
-#municipality{
-	text-placement:interior;
+#cities_big{
+	text-placement:point;
 	text-face-name:@font_limousine;
 	text-size:18;
 	text-name:"[name]";
 	text-fill:#000;
-	text-orientation:@rot;
+}
+#cities_small{
+	text-placement:point;
+	text-face-name:@font_limousine;
+	text-size:12;
+	text-name:"[name]";
+	text-fill:#000;
 }
 #province{
 	text-placement:interior;
@@ -117,5 +114,4 @@ Map {
 	text-size:26;
 	text-name:"[name]";
 	text-fill:#000;
-	text-orientation:@rot;
 }

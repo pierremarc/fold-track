@@ -41,6 +41,8 @@ namespace tmap {
 			static const std::string RefLayer;
 			static const std::string PartsCount;
 			static const std::string Fonts;
+			static const std::string MinLat;
+			static const std::string MaxLat;
 
 		protected:
 			std::map<std::string, std::string> pData;
