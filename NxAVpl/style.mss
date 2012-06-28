@@ -112,26 +112,22 @@ Map {
 	line-width:2;
 }
 
-#cities_big{
+.city-label{
 	text-placement:point;
 	text-face-name:@font_limousine;
-	text-size:18;
 	text-name:"[name]";
 	text-fill:#000;
+	text-halo-radius:1.5
+}
+
+#cities_big{
+	text-size:18;
 }
 #cities_medium{
-	text-placement:point;
-	text-face-name:@font_limousine;
 	text-size:8;
-	text-name:"[name]";
-	text-fill:#000;
 }
 #cities_small{
-	text-placement:point;
-	text-face-name:@font_limousine;
 	text-size:6;
-	text-name:"[name]";
-	text-fill:#000;
 }
 #province{
 	text-placement:interior;
