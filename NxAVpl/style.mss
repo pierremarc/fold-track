@@ -101,7 +101,7 @@ Map {
 	text-face-name:@font_limousine;
 	text-name:"[name]";
 	text-fill:#000;
-	
+	text-halo-radius:1.5
 }
 
 #cities_big{
