@@ -8,6 +8,9 @@
 @motorway:#C1C1C1;
 @road-in:#000000;
 @road-out:#464646;
+@eglise:#FF6161;
+@aeroports:#FF6161;
+
 
 @rot:270;
 
@@ -60,8 +63,13 @@ Map {
 }
 
 #eglises{
-	polygon-fill:red;
+	polygon-pattern-file:url('/home/pierre/System/src/fold-track/NxAVpl/hatch_church.svg');
 }
+
+#aeroports{
+	polygon-pattern-file:url('/home/pierre/System/src/fold-track/NxAVpl/hatch_plane.svg');
+}
+
 #ancienbatiments{
 	polygon-fill:#ff00aa;
 }
@@ -94,24 +102,26 @@ Map {
 	line-width:2;
 }
 
-
-
-.city-label{
+#cities_big{
 	text-placement:point;
 	text-face-name:@font_limousine;
+	text-size:18;
 	text-name:"[name]";
 	text-fill:#000;
-	
-}
-
-#cities_big{
-	text-size:18;
 }
 #cities_medium{
+	text-placement:point;
+	text-face-name:@font_limousine;
 	text-size:8;
+	text-name:"[name]";
+	text-fill:#000;
 }
 #cities_small{
+	text-placement:point;
+	text-face-name:@font_limousine;
 	text-size:6;
+	text-name:"[name]";
+	text-fill:#000;
 }
 #province{
 	text-placement:interior;
