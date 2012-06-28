@@ -39,6 +39,8 @@ namespace tmap {
 	const std::string Options::Fonts = std::string("font");
 	const std::string Options::MinLat = std::string("south");
 	const std::string Options::MaxLat = std::string("north");
+	const std::string Options::MinLon = std::string("east");
+	const std::string Options::MaxLon = std::string("west");
 	
 	Options::Options()
 	{

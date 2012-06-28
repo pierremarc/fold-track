@@ -52,14 +52,15 @@ int main(int ac, char ** av)
 		}
 	}
 
+	std::cerr<<"Fonts ======================="<<std::endl;
 	const std::map<std::string,std::pair<int,std::string> >& font_map(mapnik::freetype_engine::get_mapping());
 	for(std::map<std::string,std::pair<int,std::string> >::const_iterator fit(font_map.begin());
 	    fit != font_map.end();
 	    fit++)
 	{
-		std::cerr<<"Registered Font: "<<fit->first<< " "<< fit->second.first <<" "<< fit->second.second <<std::endl;
+		std::cerr<<"\t"<<fit->first<< " "<< fit->second.first <<" "<< fit->second.second <<std::endl;
 	}
-
+	std::cerr<<"=============================="<<std::endl;
 
 	/// prepare the map
 	mapnik::datasource_cache::instance()->register_datasources(tmap::mapnik_input_dir());
@@ -105,67 +106,70 @@ int main(int ac, char ** av)
 	}
 	std::cerr<<"=============================="<<std::endl;
 
-	/// get the extent
-	mapnik::box2d<double> bb;
-	bool firstLayer(true);
-//	for(int i(0); i < lnames.size(); ++i)
-	BOOST_FOREACH(const tmap::LayerRef_t& kl, lnames)
-	{
+//	/// get the extent
+//	mapnik::box2d<double> bb;
+//	bool firstLayer(true);
+////	for(int i(0); i < lnames.size(); ++i)
+//	BOOST_FOREACH(const tmap::LayerRef_t& kl, lnames)
+//	{
 
-		mapnik::layer& l(m.layers().at(kl.second));
-		if(firstLayer)
-		{
-			firstLayer = false;
-			bb = l.envelope();
-		}
-		else
-		{
-			bb.expand_to_include(l.envelope());
-		}
-	}
+//		mapnik::layer& l(m.layers().at(kl.second));
+//		if(firstLayer)
+//		{
+//			firstLayer = false;
+//			bb = l.envelope();
+//		}
+//		else
+//		{
+//			bb.expand_to_include(l.envelope());
+//		}
+//	}
 
 
-	double trans = params.Get(tmap::Options::Transverse, 1000.0);
-	if(params.Has(tmap::Options::Latitude)) // trans is height
-	{
-		// FIXME or FORGET IT
+//	double trans = params.Get(tmap::Options::Transverse, 1000.0);
+//	if(params.Has(tmap::Options::Latitude)) // trans is height
+//	{
+//		// FIXME or FORGET IT
 
-		double lat(params.Get(tmap::Options::Latitude, bb.miny() + (bb.height() / 2.0)));
-		// we are looking for max and min y
-		double centerOnX(bb.minx() + (bb.width() / 2.0));
+//		double lat(params.Get(tmap::Options::Latitude, bb.miny() + (bb.height() / 2.0)));
+//		// we are looking for max and min y
+//		double centerOnX(bb.minx() + (bb.width() / 2.0));
 
-		double maxy(tmap::follow(mapnik::coord2d(centerOnX, lat), trans / 2.0, AZI_NORTH, m.srs()).y);
-		double miny(tmap::follow(mapnik::coord2d(centerOnX, lat), trans / 2.0, AZI_SOUTH, m.srs()).y);
-		bb = mapnik::box2d<double>(bb.minx(),miny, bb.maxx(), maxy);
+//		double maxy(tmap::follow(mapnik::coord2d(centerOnX, lat), trans / 2.0, AZI_NORTH, m.srs()).y);
+//		double miny(tmap::follow(mapnik::coord2d(centerOnX, lat), trans / 2.0, AZI_SOUTH, m.srs()).y);
+//		bb = mapnik::box2d<double>(bb.minx(),miny, bb.maxx(), maxy);
 
-	}
-	else if(params.Has(tmap::Options::Longitude))
-	{
-		double lon(params.Get(tmap::Options::Longitude, bb.minx() + (bb.width() / 2.0)));
+//	}
+//	else if(params.Has(tmap::Options::Longitude))
+//	{
+//		double lon(params.Get(tmap::Options::Longitude, bb.minx() + (bb.width() / 2.0)));
 
-		double miny(params.Get(tmap::Options::MinLat, bb.miny()));
-		double maxy(params.Get(tmap::Options::MaxLat, bb.maxy()));
+//		double miny(params.Get(tmap::Options::MinLat, bb.miny()));
+//		double maxy(params.Get(tmap::Options::MaxLat, bb.maxy()));
 
-		double maxx(std::max(tmap::follow(mapnik::coord2d(lon, bb.miny()), trans / 2.0, AZI_WEST, m.srs()).x,
-				     tmap::follow(mapnik::coord2d(lon, bb.maxy()), trans / 2.0, AZI_WEST, m.srs()).x));
+//		double maxx(std::max(tmap::follow(mapnik::coord2d(lon, bb.miny()), trans / 2.0, AZI_WEST, m.srs()).x,
+//				     tmap::follow(mapnik::coord2d(lon, bb.maxy()), trans / 2.0, AZI_WEST, m.srs()).x));
 
-		double minx(std::min(tmap::follow(mapnik::coord2d(lon, bb.miny()), trans / 2.0, AZI_EAST, m.srs()).x,
-				     tmap::follow(mapnik::coord2d(lon, bb.maxy()), trans / 2.0, AZI_EAST, m.srs()).x));
-		bb = mapnik::box2d<double>(minx, miny,
-					   maxx, maxy);
-	}
-	else
-	{
-		throw std::string("No lat or lon to center the map on!");
-	}
+//		double minx(std::min(tmap::follow(mapnik::coord2d(lon, bb.miny()), trans / 2.0, AZI_EAST, m.srs()).x,
+//				     tmap::follow(mapnik::coord2d(lon, bb.maxy()), trans / 2.0, AZI_EAST, m.srs()).x));
+//		bb = mapnik::box2d<double>(minx, miny,
+//					   maxx, maxy);
+//	}
+//	else
+//	{
+//		throw std::string("No lat or lon to center the map on!");
+//	}
 
 
 	/// Now compute map size to fit this bounding box at required scale than resize map
 
+	mapnik::box2d<double> bb(params.Get(tmap::Options::MinLon, -180.0f), params.Get(tmap::Options::MinLat, 180.0f),
+				 params.Get(tmap::Options::MaxLon, -90.0f), params.Get(tmap::Options::MaxLat, 90.0f));
 	double t0(tmap::bb_width(bb, 0, m.srs()));
-	double t1(tmap::bb_width(bb, 1, m.srs()));
-	double mapW(std::min(t0,t1) / denom);
+	double t1(tmap::bb_width(bb, 2, m.srs()));
+	double mapW(std::min(t0,t1) / denom);  // close to equator
 
+	std::cerr<<"Covered Width: "<< std::min(t0,t1) <<" ("<< bb.width()<<")"<<std::endl;
 	double mapH(tmap::distance(mapnik::coord2d(bb.minx(), bb.miny()), mapnik::coord2d(bb.minx(), bb.maxy()), m.srs()) / denom);
 
 	std::string out(params.GetString(tmap::Options::OutputFile));
@@ -186,7 +190,7 @@ int main(int ac, char ** av)
 			l.set_active(true);
 		}
 		targetMap.zoom_to_box(bb);
-		std::cerr<<"Map Width: "<< targetMap.width() <<std::endl;
+		std::cerr<<"Map Width: "<< (double(targetMap.width()) * 0.03527)<< "cm" <<std::endl;
 
 
 		if(type == std::string("png"))

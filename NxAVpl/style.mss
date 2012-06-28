@@ -101,10 +101,17 @@ Map {
 	text-name:"[name]";
 	text-fill:#000;
 }
+#cities_medium{
+	text-placement:point;
+	text-face-name:@font_limousine;
+	text-size:8;
+	text-name:"[name]";
+	text-fill:#000;
+}
 #cities_small{
 	text-placement:point;
 	text-face-name:@font_limousine;
-	text-size:12;
+	text-size:6;
 	text-name:"[name]";
 	text-fill:#000;
 }
