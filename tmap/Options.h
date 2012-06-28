@@ -43,6 +43,8 @@ namespace tmap {
 			static const std::string Fonts;
 			static const std::string MinLat;
 			static const std::string MaxLat;
+			static const std::string MinLon;
+			static const std::string MaxLon;
 
 		protected:
 			std::map<std::string, std::string> pData;
