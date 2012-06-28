@@ -20,7 +20,7 @@ Map {
 
 
 #agricoles{
- 	polygon-fill:@agri;
+	polygon-pattern-file:url('/home/pierre/System/src/fold-track/NxAVpl/dash_yellow.svg');
 }
 
 #foret{
@@ -30,11 +30,11 @@ Map {
 }
 
 #marecages{
-	polygon-fill:@swamp;
+	polygon-pattern-file:url('/home/pierre/System/src/fold-track/NxAVpl/dash_blue.svg');
 }
 
 #eau{
-	polygon-fill:@water;
+	polygon-pattern-file:url('/home/pierre/System/src/fold-track/NxAVpl/dot_blue.svg');
 }
 
 #indus{
