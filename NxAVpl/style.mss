@@ -42,7 +42,7 @@ Map {
 }
 
 #residentielles{
-	polygon-fill:@residential;
+	polygon-pattern-file:url('/home/pierre/System/src/fold-track/NxAVpl/hatch_grey.svg');
 }
 
 #buildings{
