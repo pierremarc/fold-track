@@ -3,23 +3,11 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1"
 	 id="svg2" inkscape:version="0.48.3.1 r9886" xmlns:cc="http://creativecommons.org/ns#" sodipodi:docname="hatch_00.svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:svg="http://www.w3.org/2000/svg" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"
-	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="10px" height="10px"
-	 viewBox="0 0 10 10" enable-background="new 0 0 10 10" xml:space="preserve">
-<rect fill="#FFFFFF" width="10" height="10"/>
-<rect x="1.072" y="3.549" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -2.6368 2.1348)" fill="#E2EA75" width="0.372" height="1.402"/>
-<rect x="3.059" y="5.56" transform="matrix(0.7071 0.7071 -0.7071 0.7071 5.1623 -0.9717)" fill="#E2EA75" width="1.389" height="0.372"/>
-<rect x="5.549" y="6.564" transform="matrix(0.7071 0.7071 -0.7071 0.7071 6.6036 -2.4424)" fill="#E2EA75" width="1.402" height="0.372"/>
-<rect x="3.564" y="2.549" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -1.2 3.6035)" fill="#E2EA75" width="0.372" height="1.402"/>
-<rect x="8.055" y="5.571" transform="matrix(0.7071 0.7071 -0.7071 0.7071 6.629 -4.5029)" fill="#E2EA75" width="1.389" height="0.36"/>
-<rect x="1.064" y="1.049" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 3.3711 2.1041)" fill="#E2EA75" width="0.372" height="1.402"/>
-<rect x="3.054" y="0.576" transform="matrix(0.7071 0.7071 -0.7071 0.7071 1.6338 -2.4335)" fill="#E2EA75" width="1.402" height="0.359"/>
-<rect x="6.063" y="1.05" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 11.9064 -1.4308)" fill="#E2EA75" width="0.373" height="1.402"/>
-<rect x="0.549" y="6.564" transform="matrix(-0.7069 -0.7073 0.7073 -0.7069 -2.6412 12.4066)" fill="#E2EA75" width="1.401" height="0.373"/>
-<rect x="0.549" y="9.054" transform="matrix(-0.7069 -0.7073 0.7073 -0.7069 -4.4025 16.6572)" fill="#E2EA75" width="1.401" height="0.373"/>
-<polygon fill="#E2EA75" points="8.123,7.886 9.105,8.87 9.377,8.614 8.386,7.623 "/>
-<rect x="8.049" y="3.064" transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 12.6381 11.7354)" fill="#E2EA75" width="1.402" height="0.373"/>
-<polygon fill="#E2EA75" points="3.122,7.887 4.123,8.888 4.376,8.614 3.386,7.623 "/>
-<rect x="8.055" y="0.57" transform="matrix(0.7071 0.7071 -0.7071 0.7071 3.0932 -5.9671)" fill="#E2EA75" width="1.389" height="0.36"/>
-<rect x="5.555" y="4.07" transform="matrix(0.7071 0.7071 -0.7071 0.7071 4.8358 -3.1742)" fill="#E2EA75" width="1.389" height="0.36"/>
-<rect x="5.56" y="9.06" transform="matrix(0.7071 0.7071 -0.7071 0.7071 8.366 -1.716)" fill="#E2EA75" width="1.389" height="0.36"/>
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="7.312px" height="7.312px"
+	 viewBox="0 0 7.312 7.312" enable-background="new 0 0 7.312 7.312" xml:space="preserve">
+<rect fill="#FFFFFF" width="7.312" height="7.312"/>
+<rect x="1.568" y="5.191" transform="matrix(0.7076 -0.7067 0.7067 0.7076 -3.8542 3.1184)" fill="#E2EA75" width="0.544" height="2.05"/>
+<rect x="5.212" y="3.728" transform="matrix(0.7076 -0.7067 0.7067 0.7076 -1.7552 5.2657)" fill="#E2EA75" width="0.544" height="2.051"/>
+<rect x="1.556" y="1.535" transform="matrix(-0.7076 0.7067 -0.7067 -0.7076 4.9301 3.0793)" fill="#E2EA75" width="0.544" height="2.05"/>
+<rect x="4.466" y="0.842" transform="matrix(0.707 0.7072 -0.7072 0.707 2.3903 -3.5594)" fill="#E2EA75" width="2.05" height="0.526"/>
 </svg>
