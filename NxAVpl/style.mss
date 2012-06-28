@@ -2,12 +2,15 @@
 @forest:#C1E6BD;
 @swamp:#0CE84A;
 @agri:#4BE80C;
-@indus:#AFB9AB;
+@indus:#B4C9A9;
 @residential:#F6F40E;
-@building:#000000;
+@building:#212121;
 @motorway:#C1C1C1;
-@road-in:#000000;
+@road-in:#212121;
 @road-out:#464646;
+@red:#FF6161;
+@terre:#F4F4F4
+
 
 @rot:270;
 
@@ -15,9 +18,14 @@
 @font_limousine:"Limousine Medium","Sans";
 
 Map {
-  background-color:white;
+  background-color:	polygon-pattern-file:url('/home/pierre/System/src/fold-track/NxAVpl/dot_blue.svg');
+
 }
 
+/*ajouter le fond terre pour supprimer le blanc quand c'est non assigné*/
+#terre {
+		polygon-fill:@terre;
+}
 
 #agricoles{
 	polygon-pattern-file:url('/home/pierre/System/src/fold-track/NxAVpl/dash_yellow.svg');
@@ -55,15 +63,25 @@ Map {
 	text-face-name:@font_limousine;
 	text-size:13;
 	text-name:"'+'";
-	text-fill:#000;
+	text-fill:#444;
 	text-orientation:@rot;
 }
 
 #eglises{
-	polygon-fill:red;
+	polygon-pattern-file:url('/home/pierre/System/src/fold-track/NxAVpl/hatch_church.svg');
+	line-width: 0.3;
+	line-color: @red;
+
 }
+
+#aeroports{
+	polygon-pattern-file:url('/home/pierre/System/src/fold-track/NxAVpl/hatch_plane.svg');
+	line-width: 0.3;
+	line-color: @red
+}
+
 #ancienbatiments{
-	polygon-fill:#ff00aa;
+	polygon-fill:#555555;
 }
 
 
@@ -93,8 +111,6 @@ Map {
 	line-color:@motorway;
 	line-width:2;
 }
-
-
 
 .city-label{
 	text-placement:point;
