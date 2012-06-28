@@ -4,12 +4,11 @@
 @agri:#4BE80C;
 @indus:#AFB9AB;
 @residential:#F6F40E;
-@building:#000000;
+@building:#212121;
 @motorway:#C1C1C1;
-@road-in:#000000;
+@road-in:#212121;
 @road-out:#464646;
-@eglise:#FF6161;
-@aeroports:#FF6161;
+@red:#FF6161;
 
 
 @rot:270;
@@ -58,16 +57,21 @@ Map {
 	text-face-name:@font_limousine;
 	text-size:13;
 	text-name:"'+'";
-	text-fill:#000;
+	text-fill:#444;
 	text-orientation:@rot;
 }
 
 #eglises{
 	polygon-pattern-file:url('/home/pierre/System/src/fold-track/NxAVpl/hatch_church.svg');
+	line-width: 0.3;
+	line-color: @red;
+
 }
 
 #aeroports{
 	polygon-pattern-file:url('/home/pierre/System/src/fold-track/NxAVpl/hatch_plane.svg');
+	line-width: 0.3;
+	line-color: @red
 }
 
 #ancienbatiments{
