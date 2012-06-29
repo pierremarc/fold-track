@@ -1,15 +1,66 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Generator: Adobe Illustrator 15.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1"
-	 id="svg2" inkscape:version="0.48.3.1 r9886" xmlns:cc="http://creativecommons.org/ns#" sodipodi:docname="hatch_00.svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:svg="http://www.w3.org/2000/svg" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"
-	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="10px" height="10px"
-	 viewBox="0 0 10 10" enable-background="new 0 0 10 10" xml:space="preserve">
-<sodipodi:namedview  id="base" pagecolor="#ffffff" borderopacity="1.0" bordercolor="#666666" inkscape:cx="6.2267249" inkscape:pageopacity="0.0" fit-margin-right="0" inkscape:pageshadow="2" inkscape:zoom="90.509668" inkscape:cy="1.8554954" inkscape:document-units="px" inkscape:current-layer="layer1" showgrid="false" inkscape:window-width="1680" fit-margin-top="0" inkscape:window-height="1000" inkscape:window-x="0" inkscape:window-y="27" inkscape:window-maximized="1" showguides="true" inkscape:guide-bbox="true" fit-margin-left="0" fit-margin-bottom="0" inkscape:snap-global="false">
-	<sodipodi:guide  id="guide3201" orientation="1,0" position="-777.011,-243.19382"></sodipodi:guide>
-	<sodipodi:guide  id="guide3203" orientation="1,0" position="-366.8891,-277.53901"></sodipodi:guide>
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="svg2"
+   inkscape:version="0.48.3.1 r9886"
+   sodipodi:docname="hatch_00.svg"
+   x="0px"
+   y="0px"
+   width="10px"
+   height="10px"
+   viewBox="0 0 10 10"
+   enable-background="new 0 0 10 10"
+   xml:space="preserve"><metadata
+   id="metadata3788"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
+   id="defs3786" />
+<sodipodi:namedview
+   id="base"
+   pagecolor="#ffffff"
+   borderopacity="1.0"
+   bordercolor="#666666"
+   inkscape:cx="5.7847832"
+   inkscape:pageopacity="0.0"
+   fit-margin-right="0"
+   inkscape:pageshadow="2"
+   inkscape:zoom="90.509668"
+   inkscape:cy="5.832971"
+   inkscape:document-units="px"
+   inkscape:current-layer="svg2"
+   showgrid="false"
+   inkscape:window-width="1680"
+   fit-margin-top="0"
+   inkscape:window-height="1000"
+   inkscape:window-x="0"
+   inkscape:window-y="27"
+   inkscape:window-maximized="1"
+   showguides="true"
+   inkscape:guide-bbox="true"
+   fit-margin-left="0"
+   fit-margin-bottom="0"
+   inkscape:snap-global="false">
+	<sodipodi:guide
+   id="guide3201"
+   orientation="1,0"
+   position="-777.011,-243.19382" />
+	<sodipodi:guide
+   id="guide3203"
+   orientation="1,0"
+   position="-366.8891,-277.53901" />
 </sodipodi:namedview>
-<path fill="#C1E6BD" d="M0,0v0.526L0.526,0H0z M8.018,0H7.51L0,7.509v0.509L8.018,0z M2.509,0L0,2.509v0.509L3.018,0H2.509z M0,10
-	h0.526L10,0.526V0L0,10z M2.491,10h0.526L10,3.018V2.491L2.491,10z M5.527,0 M5,0L0,5v0.526L5.527,0H5z M5.527,10L10,5.526V5l-5,5
-	H5.527z M8.018,10L10,8.018V7.491L7.492,10H8.018z"/>
+<path
+   d="M 0,0 V 0.526 L 0.526,0 H 0 z M 8.018,0 H 7.51 L 0,7.509 V 8.018 L 8.018,0 z M 2.509,0 0,2.509 V 3.018 L 3.018,0 H 2.509 z M 0,10 H 0.526 L 10,0.526 V 0 L 0,10 z M 2.491,10 H 3.017 L 10,3.018 V 2.491 L 2.491,10 z M 5.527,0 M 5,0 0,5 V 5.526 L 5.527,0 H 5 z M 5.527,10 10,5.526 V 5 L 5,10 H 5.527 z M 8.018,10 10,8.018 V 7.491 L 7.492,10 H 8.018 z"
+   id="path3784"
+   inkscape:connector-curvature="0"
+   style="fill:#c1e6bd" />
 </svg>

@@ -9,7 +9,7 @@
 @road-in:#212121;
 @road-out:#464646;
 @red:#FF6161;
-@terre:#F4F4F4
+@terre:#F4F4F4;
 
 
 @rot:270;
@@ -18,7 +18,7 @@
 @font_limousine:"Limousine Medium","Sans";
 
 Map {
-  background-color:	polygon-pattern-file:url('/home/pierre/System/src/fold-track/NxAVpl/dot_blue.svg');
+/*   polygon-pattern-file:url('/home/pierre/System/src/fold-track/NxAVpl/dot_blue.svg'); */
 
 }
 
@@ -29,6 +29,8 @@ Map {
 
 #agricoles{
 	polygon-pattern-file:url('/home/pierre/System/src/fold-track/NxAVpl/dash_yellow.svg');
+	/*line-width: 0.5;
+	line-color: @red;*/
 }
 
 #foret{
@@ -68,15 +70,15 @@ Map {
 }
 
 #eglises{
-	polygon-pattern-file:url('/home/pierre/System/src/fold-track/NxAVpl/hatch_church.svg');
-	line-width: 0.3;
+	polygon-pattern-file:url('/home/pierre/System/src/fold-track/NxAVpl/hatch_cult.svg');
+	line-width: 0.1;
 	line-color: @red;
 
 }
 
 #aeroports{
 	polygon-pattern-file:url('/home/pierre/System/src/fold-track/NxAVpl/hatch_plane.svg');
-	line-width: 0.3;
+	line-width: 0.1;
 	line-color: @red
 }
 
@@ -117,7 +119,7 @@ Map {
 	text-face-name:@font_limousine;
 	text-name:"[name]";
 	text-fill:#000;
-	text-halo-radius:1.5
+	text-halo-radius:0.2
 }
 
 #cities_big{
