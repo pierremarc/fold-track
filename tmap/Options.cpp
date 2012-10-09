@@ -41,6 +41,9 @@ namespace tmap {
 	const std::string Options::MaxLat = std::string("north");
 	const std::string Options::MinLon = std::string("east");
 	const std::string Options::MaxLon = std::string("west");
+	const std::string Options::Rotate = std::string("rotate");
+	const std::string Options::TranslateX = std::string("tx");
+	const std::string Options::MapWidth = std::string("mw");
 	
 	Options::Options()
 	{

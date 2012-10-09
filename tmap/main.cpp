@@ -12,9 +12,11 @@
 
 #include <boost/algorithm/string.hpp>
 #include <boost/foreach.hpp>
+#include <boost/lexical_cast.hpp>
 
 #include "Utils.h"
 #include "Options.h"
+#include "Transform.h"
 
 #include <mapnik/cairo_renderer.hpp>
 #include <cairo-features.h>
@@ -58,9 +60,9 @@ int main(int ac, char ** av)
 	    fit != font_map.end();
 	    fit++)
 	{
-		std::cerr<<"\t"<<fit->first<< " "<< fit->second.first <<" "<< fit->second.second <<std::endl;
+		std::cerr<<" "<<fit->first<< " "<< fit->second.first <<" "<< fit->second.second <<std::endl;
 	}
-	std::cerr<<"=============================="<<std::endl;
+//	std::cerr<<"=============================="<<std::endl;
 
 	/// prepare the map
 	mapnik::datasource_cache::instance()->register_datasources(tmap::mapnik_input_dir());
@@ -167,10 +169,13 @@ int main(int ac, char ** av)
 				 params.Get(tmap::Options::MaxLon, -90.0f), params.Get(tmap::Options::MaxLat, 90.0f));
 	double t0(tmap::bb_width(bb, 0, m.srs()));
 	double t1(tmap::bb_width(bb, 2, m.srs()));
-	double mapW(std::min(t0,t1) / denom);  // close to equator
+// 	double mapW(std::min(t0,t1) / denom);  // close to equator
+// 	
+	double mapW(bb.width() / denom);
 
 	std::cerr<<"Covered Width: "<< std::min(t0,t1) <<" ("<< bb.width()<<")"<<std::endl;
-	double mapH(tmap::distance(mapnik::coord2d(bb.minx(), bb.miny()), mapnik::coord2d(bb.minx(), bb.maxy()), m.srs()) / denom);
+//	double mapH(tmap::distance(mapnik::coord2d(bb.minx(), bb.miny()), mapnik::coord2d(bb.minx(), bb.maxy()), m.srs()) / denom);
+	double mapH(bb.height() / denom);
 
 	std::string out(params.GetString(tmap::Options::OutputFile));
 	std::string type(*(mapnik::type_from_filename(out)));
@@ -179,7 +184,7 @@ int main(int ac, char ** av)
 		mapnik::Map targetMap(tmap::m2pt(mapW), tmap::m2pt(mapH));
 		mapnik::load_map(targetMap, params.GetString(tmap::Options::MapnikStyle));
 
-		for(int i(0); i < targetMap.layer_count(); i++)
+		for(unsigned int i(0); i < targetMap.layer_count(); i++)
 		{
 			targetMap.layers().at(i).set_active(false);
 		}
@@ -200,7 +205,85 @@ int main(int ac, char ** av)
 	}
 	else
 	{
-		// TODO
+
+		double pt_map_width(tmap::m2pt(mapW));
+		double pt_map_height(tmap::m2pt(mapH));
+		double mstep(bb.height() / parts);
+		double step(pt_map_height / parts);
+		double rotate(params.Get(tmap::Options::Rotate, double(0.0)));
+		double transx(params.Get(tmap::Options::TranslateX, double(0.0)));
+		double padding(rotate * pt_map_width / 100.0f);
+		double mpadding(rotate * bb.width() / 100.0f);
+
+		pt_map_width = params.Get(tmap::Options::MapWidth, pt_map_width);
+
+		std::cerr<<"pt_map_width\t "<<pt_map_width<<std::endl;
+		std::cerr<<"pt_map_height\t "<<pt_map_height<<std::endl;
+		std::cerr<<"mstep\t\t "<<mstep<<std::endl;
+		std::cerr<<"step\t\t "<<step<<std::endl;
+		std::cerr<<"rotate\t\t "<<rotate<<std::endl;
+
+//		double offset(i * step);
+//		std::cerr<<"\tOffset: "<<offset<<std::endl;
+		ospi::Transform t;
+		t.rotate(-rotate, ospi::Point(pt_map_width /double(2.0), pt_map_height /double(2.0)));
+//		t.translate(transx - (pt_map_width / 2.0), -step/2.0);
+
+//		Cairo::Matrix cm(Cairo::identity_matrix());
+////		cm.translate(-pt_map_width /double(2.0), -pt_map_height /double(2.0));
+//		cm.rotate(rotate * .0174532925199432958);
+//		cm.translate(transx,0);
+
+		for(double i(0); i < parts; i += 1.0)
+		{
+			std::cerr<<"Rendering part: "<<int(i)<<std::endl;
+			std::cerr<<" Map interval: "<<(bb.maxy() - ((i+1) * mstep))<< " " << (bb.maxy() - (i * mstep)) <<std::endl;
+
+//			mapnik::Map targetMap(pt_map_width * 2, step * 2);
+			mapnik::Map targetMap(tmap::m2pt(mapW) , pt_map_height);
+			mapnik::load_map(targetMap, params.GetString(tmap::Options::MapnikStyle));
+
+			for(unsigned int j(0); j < targetMap.layer_count(); j++)
+			{
+				targetMap.layers().at(j).set_active(false);
+			}
+			BOOST_FOREACH(const tmap::LayerRef_t& kl, lnames)
+			{
+				mapnik::layer& l(targetMap.layers().at(kl.second));
+				l.set_active(true);
+			}
+			mapnik::box2d<double> tbox(bb.minx() - mpadding, (bb.maxy() - ((i+1) * mstep)) - mpadding,
+						   bb.maxx() + mpadding, (bb.maxy() - (i * mstep)) + mpadding);
+			targetMap.zoom_to_box(bb);
+
+			double offset(i * step);
+
+			std::string prefix(boost::lexical_cast<std::string>(int(i)));
+			prefix.append("_");
+			prefix.append(out);
+
+			Cairo::RefPtr<Cairo::Surface> surface;
+			surface = Cairo::PdfSurface::create(prefix, pt_map_width, step);
+			surface->set_device_offset(transx, -offset);
+
+			Cairo::RefPtr<Cairo::Context> context = Cairo::Context::create(surface);
+			mapnik::cairo_renderer<Cairo::Context> ren(targetMap, context);
+
+//			context->rectangle(0,0,pt_map_width, step);
+//			context->clip();
+
+			const ospi::Transform::Matrix& mtx(t.getMatrix());
+			Cairo::Matrix cm(mtx.m(1,1), mtx.m(1,2),
+					 mtx.m(2,1), mtx.m(2,2),
+					 mtx.m(3,1), mtx.m(3,3));
+			context->set_matrix(cm);
+
+			ren.apply();
+			surface->finish();
+		}
+
+
+
 	}
 
 	return 0;

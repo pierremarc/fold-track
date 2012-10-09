@@ -3,7 +3,8 @@ CONFIG += console
 CONFIG -= qt
 DEFINES = LINUX BOOST_SPIRIT_THREADSAFE MAPNIK_THREADSAFE DEBUG MAPNIK_DEBUG MAPNIK_LOG HAVE_CAIRO HAVE_LIBXML2
 SOURCES += main.cpp \
-    Options.cpp
+    Options.cpp \
+Transform.cpp
 
 LIBS += -L/usr/lib -lmapnik
 LIBS += -lfreetype -lltdl -lpng -ltiff -lz -ljpeg -lproj -licuuc -lboost_filesystem -lboost_regex -lxml2 -lboost_thread -lboost_system -lcairomm-1.0 -lcairo -lsigc-2.0
@@ -13,4 +14,5 @@ LIBS += -lGeographic
 
 HEADERS += \
     Options.h \
-    Utils.h
+    Utils.h \
+Transform.h

@@ -45,6 +45,9 @@ namespace tmap {
 			static const std::string MaxLat;
 			static const std::string MinLon;
 			static const std::string MaxLon;
+			static const std::string Rotate;
+			static const std::string TranslateX;
+			static const std::string MapWidth;
 
 		protected:
 			std::map<std::string, std::string> pData;

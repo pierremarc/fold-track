@@ -1,4 +1,4 @@
-@water:#91C3CB;
+@water:#7FA8D2;
 @forest:#C1E6BD;
 @swamp:#0CE84A;
 @agri:#4BE80C;
@@ -16,10 +16,15 @@
 
 @font_crimson:"Crimson Text Roman","Serif";
 @font_limousine:"Limousine Medium","Sans";
+@font_limousine_bold:"Limousine Bold","Sans";
 
 Map {
-/*   polygon-pattern-file:url('/home/pierre/System/src/fold-track/NxAVpl/dot_blue.svg'); */
+background-color:#ffffff;
+}
 
+#mer{
+/* 	 polygon-fill:@red; */
+	 polygon-pattern-file:url('/home/pierre/System/src/fold-track/NxAVpl/dot_blue.svg');
 }
 
 /*ajouter le fond terre pour supprimer le blanc quand c'est non assigné*/
@@ -47,6 +52,25 @@ Map {
 	polygon-pattern-file:url('/home/pierre/System/src/fold-track/NxAVpl/dot_blue.svg');
 }
 
+#river{
+	line-width: 0.4;
+	line-color: @water;
+	
+	text-placement:line;
+	text-min-path-length:500;
+	text-min-distance:500;
+	
+	text-size:8;
+	text-face-name:@font_crimson;
+	text-name:"[name]";
+	text-fill:@water;
+}
+#stream{
+	line-width: 0.1;
+	line-color: @water;
+}
+
+
 #indus{
 	polygon-fill:@indus;
 }
@@ -55,15 +79,15 @@ Map {
 	polygon-pattern-file:url('/home/pierre/System/src/fold-track/NxAVpl/hatch_grey.svg');
 }
 
-#buildings{
+/*#buildings{
 	polygon-fill:@building;
-}
+}*/
 
 #cimetieres{
 	
 /* 	polygon-fill:@building; */
 	text-face-name:@font_limousine;
-	text-size:13;
+	text-size:8;
 	text-name:"'+'";
 	text-fill:#444;
 	text-orientation:@rot;
@@ -118,10 +142,13 @@ Map {
 	text-placement:point;
 	text-face-name:@font_limousine;
 	text-name:"[name]";
-	text-fill:#000;
-	text-halo-radius:0.2
+	text-fill:#AE5000;
 }
-
+/*#l_b{
+	text-face-name:@font_limousine_bold;
+	text-fill:#fff;
+	text-size:18;
+}*/
 #cities_big{
 	text-size:18;
 }
@@ -129,6 +156,7 @@ Map {
 	text-size:8;
 }
 #cities_small{
+	text-face-name:@font_crimson;
 	text-size:6;
 }
 #province{
