@@ -11,6 +11,8 @@ from PIL import Image
 
 
 import cairo
+import pango
+import pangocairo
 
 import xml.sax as sax
 import time
@@ -22,11 +24,17 @@ from dateutil import parser as dateparser
 
 import csv
 
+
+
 GPS_tags = ('GPS GPSAltitude', 'GPS GPSAltitudeRef', 'GPS GPSLatitude', 'GPS GPSLatitudeRef', 'GPS GPSLongitude', 'GPS GPSLongitudeRef', 'GPS GPSTimeStamp',)
 GPS_LAT_K = GPS_tags[2]
 GPS_LON_K = GPS_tags[4]
 
-PAGE_HEIGHT = 1000
+PAGE_HEIGHT = 842.4
+PAGE_WIDTH = 597.6
+
+users = ["from Loes", "from Nicolas", "from Pacome", "from Patrick", "from Robert", "from Theun", "from Trudo"]
+
 
 
 class GPXHandler(sax.ContentHandler):
@@ -130,7 +138,7 @@ class PDFComposerCairo(object):
         self.num_page = 0
         
         self.previous_image_ = None
-        self.get_context(400, PAGE_HEIGHT)
+        self.get_context(PAGE_WIDTH, PAGE_HEIGHT)
         for obj in objects:
             insert = getattr(self, '_'.join(['insert', obj['type']]))
             insert(obj, 0, (obj['lat'] * scale) - (min_y + (self.num_page * PAGE_HEIGHT)))
@@ -138,9 +146,27 @@ class PDFComposerCairo(object):
         self.surface.finish()
         
     def insert_text(self, o, x, y):
+        t_width = PAGE_WIDTH / len(users)
+        idx = 0
+        for u in users:
+            if u == o['from']:
+                break
+            idx += 1
+        offset = t_width * idx
         self.context.save()
-        self.context.move_to(x, y)
-        self.context.show_text(o['msg'])
+        #print(self.context.text_extents(o['msg']))
+        self.context.move_to(offset, y)
+        self.context.set_font_size(4)
+        font = pango.FontDescription('Crimson Text' + " 4")
+        pangocairo_context = pangocairo.CairoContext(self.context)
+        layout = pangocairo_context.create_layout()
+        layout.set_font_description(font)
+        layout.set_width(int(t_width) * pango.SCALE)
+        layout.set_text(o['msg'])
+        self.context.set_source_rgb(0, 0, 0)
+        pangocairo_context.update_layout(layout)
+        pangocairo_context.show_layout(layout)
+        #self.context.show_text(o['msg'])
         self.context.restore()
         
     def get_context(self, w, h):
